@@ -33,7 +33,7 @@ a{color:inherit}
 .wrap{max-width:1060px;margin:0 auto;padding-inline:22px}
 .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);display:inline-flex;align-items:center;gap:9px}
-.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);display:inline-block}
+.eyebrow::before{content:"";width:7px;height:7px;background:var(--accent);transform:rotate(45deg);border-radius:1px;display:inline-block;flex:none}
 section{padding-block:clamp(50px,7vw,84px)}
 .sec-head{margin-bottom:32px}
 .sec-head h2{font-family:'IBM Plex Serif',Georgia,serif;font-weight:600;font-size:clamp(26px,4vw,36px);letter-spacing:-.01em;margin-top:14px;line-height:1.15}
@@ -65,6 +65,9 @@ section{padding-block:clamp(50px,7vw,84px)}
 .metric .n{font-family:'IBM Plex Serif',serif;font-weight:600;font-size:clamp(28px,4vw,38px);line-height:1;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
 .metric .n span{color:var(--accent)}
 .metric .lbl{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);margin-top:12px;line-height:1.45}
+a.metriclink{text-decoration:none;transition:border-color .15s,transform .15s}
+a.metriclink:hover{border-color:var(--accent);transform:translateY(-2px)}
+a.metriclink:hover .lbl{color:var(--accent-ink)}
 .about-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:46px;align-items:start}
 .about-body p{font-size:16.5px;color:var(--ink);margin:0 0 16px;max-width:62ch}
 .about-body p.soft{color:var(--ink-soft);font-size:15.5px}
@@ -82,14 +85,49 @@ section{padding-block:clamp(50px,7vw,84px)}
 .datacard{border:1px solid var(--line);border-radius:11px;padding:15px;background:var(--bg)}
 .datacard .k{font-family:'IBM Plex Serif',serif;font-size:23px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .datacard .d{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);margin-top:7px;line-height:1.4;letter-spacing:.01em}
+details.dcard-x{cursor:pointer}
+details.dcard-x summary{list-style:none;outline:none}
+details.dcard-x summary::-webkit-details-marker{display:none}
+details.dcard-x .xcue{font-size:12px;color:var(--ink-faint);transition:transform .2s;display:inline-block}
+details.dcard-x[open] .xcue{transform:rotate(180deg)}
+details.dcard-x .dmore{font-size:12.5px;color:var(--ink);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+/* lightbox */
+figure.fig .imgbox.lb{border:0;cursor:zoom-in;width:100%}
+.lbx{position:fixed;inset:0;z-index:200;background:rgba(10,11,14,0.88);display:none;align-items:center;justify-content:center;padding:28px;flex-direction:column;gap:14px}
+.lbx.open{display:flex}
+.lbx img{max-width:95vw;max-height:84vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lbx .cap{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#e7e3da;max-width:70ch;text-align:center}
+.lbx .x{position:absolute;top:18px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.3);color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center}
+.plinks{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.storybtn{border:0;background:none;cursor:pointer;padding:0;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent-ink);font-weight:500}
+.storybtn:hover{text-decoration:underline}
+.story{position:fixed;inset:0;z-index:210;background:rgba(10,11,14,0.9);display:none;align-items:flex-start;justify-content:center;padding:26px;overflow:auto}
+.story.open{display:flex}
+.story-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;max-width:900px;width:100%;padding:24px;margin:auto}
+.story-panel h3{font-family:'IBM Plex Serif',serif;font-size:22px;font-weight:600;margin:0 0 6px}
+.story-panel .lede2{color:var(--ink-soft);font-size:14.5px;margin:0 0 16px}
+.story-panel video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000;display:block}
+.story-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;align-items:start}
+.sfig{margin:0}
+.sfig video,.sfig img{width:100%;height:250px;object-fit:contain;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;display:block}
+.sfig video{background:#000}
+.sfig figcaption{font-size:12px;color:var(--ink-soft);margin-top:7px;line-height:1.4}
+.sbadge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:5px;margin-bottom:8px}
+.sbadge.bad{background:var(--accent-wash);color:var(--accent-ink);border:1px solid var(--accent)}
+.sbadge.good{background:var(--cool-wash);color:var(--cool);border:1px solid var(--cool)}
+.bad{color:var(--accent-ink);font-weight:600}.good{color:var(--cool);font-weight:600}
+@media(max-width:620px){.story-row{grid-template-columns:1fr}}
+.story-x{position:fixed;top:18px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.35);color:#fff;font-size:20px;cursor:pointer;z-index:211}
+@media(max-width:620px){.story-compare{grid-template-columns:1fr}}
 .figs{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
 figure.fig{margin:0;flex:1 1 280px;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
 figure.fig .imgbox{background:var(--surface-2);display:flex;align-items:center;justify-content:center;padding:10px;min-height:170px}
 figure.fig img{max-height:250px;width:auto;border-radius:5px;object-fit:contain}
 figure.fig figcaption{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);padding:10px 13px;line-height:1.45;border-top:1px solid var(--line)}
-.subgroup{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 16px;display:flex;align-items:center;gap:12px}
-.subgroup::after{content:"";flex:1;height:1px;background:var(--line-soft)}
-.subgroup.two{margin-top:44px}
+.subgroup{font-family:'IBM Plex Serif',Georgia,serif;font-size:clamp(19px,2.6vw,24px);font-weight:600;letter-spacing:-.01em;color:var(--ink);margin:0 0 20px;display:flex;align-items:center;gap:16px;text-transform:none}
+.subgroup::before{content:"";width:10px;height:10px;background:var(--accent);transform:rotate(45deg);border-radius:1px;flex:none}
+.subgroup::after{content:"";flex:1;height:1px;background:var(--line)}
+.subgroup.two{margin-top:50px}
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;display:flex;flex-direction:column;transition:border-color .18s,transform .18s}
 .proj:hover{border-color:var(--accent);transform:translateY(-2px)}
@@ -182,7 +220,7 @@ footer{padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1p
       <div class="eyebrow">Mechanical Engineer &middot; Additive Manufacturing R&amp;D</div>
       <h1>Rakin Ahmed</h1>
       <p class="tagline">Engineering stronger, lighter 3D printed polymers, from the printhead to the fracture surface.</p>
-      <p class="lede">PhD candidate at UT Arlington. I build the hardware and run the experiments that make fused filament parts as strong as the material they are printed from, then connect the thermal physics to mechanical performance with data driven models.</p>
+      <p class="lede">PhD candidate at UT Arlington. I build the hardware and run the experiments that make fused filament parts as strong as the material they are printed from, read the result through a full materials characterization stack, from SEM and micro CT to DSC and thermography, and connect the thermal physics to mechanical performance with data driven models.</p>
     </div>
     <img class="portrait" src="images/headshot.jpg" alt="Rakin Ahmed">
   </div>
@@ -198,8 +236,8 @@ footer{padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1p
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C20.6 8.65 22 11 22 14.5V21h-4v-5.7c0-1.36-.02-3.1-1.9-3.1s-2.2 1.48-2.2 3v5.8H9z"/></svg>LinkedIn</a>
   </div>
   <div class="metrics">
-    <div class="metric"><div class="n"><span>~92</span>%</div><div class="lbl">Peak interlayer strength recovery vs. bulk PLA</div></div>
-    <div class="metric"><div class="n">11</div><div class="lbl">Characterization methods, SEM to acoustic emission</div></div>
+    <div class="metric"><div class="n"><span>~92%</span></div><div class="lbl">Peak interlayer strength recovery vs. bulk PLA</div></div>
+    <a class="metric metriclink" href="#skills"><div class="n">11</div><div class="lbl">Characterization methods, SEM to acoustic emission &rsaquo;</div></a>
     <div class="metric"><div class="n">10</div><div class="lbl">Peer reviewed papers, 3 first author</div></div>
     <div class="metric"><div class="n">1</div><div class="lbl">Patent filing, in process annealing printhead</div></div>
   </div>
@@ -232,12 +270,13 @@ footer{padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1p
   <div class="research-body">
     <p>The weak spot in a 3D printed part is the bond between layers. Earlier work only theorized the crystallization and diffusion competition in semicrystalline polymers that governs that bond. My research proves it and puts it to work. By modifying G code to add programmed interlayer cooling alongside in process annealing, I control that competition directly.</p>
     <p class="soft">A full factorial experiment on a custom heated plate printhead raised interlayer strength to about 86 percent of bulk PLA on average, with the best replicate near 92 percent, while cutting weld line porosity. DSC isolated crystallization arrested healing as the controlling mechanism, and I built coupled healing and porosity models in Python to predict bond development from a part's measured thermal history. I am now on the second generation printhead, a modular design that cuts the custom part count from five to three and integrates stock heating elements for reliability.</p>
+    <p class="soft">The thin walls themselves are designed with surface modelling rather than solid modelling. For ultra thin walls, surface modelling gives far greater control over the deposition path and print accuracy, where solid modelling is better suited to simple, prismatic shapes, as set out in my review paper on design for additive manufacturing.</p>
     <div class="datacards">
       <div class="datacard"><div class="k">86%</div><div class="d">MEAN INTERLAYER STRENGTH RECOVERY, BEST NEAR 92%</div></div>
       <div class="datacard"><div class="k">p = 0.003</div><div class="d">CRYSTALLINITY 15.5% HEATED VS 3.1% COOLED</div></div>
-      <div class="datacard"><div class="k">5 to 3</div><div class="d">GEN 2 PRINTHEAD CUTS CUSTOM PART COUNT</div></div>
+      <details class="datacard dcard-x"><summary><div class="k">5 to 3 <span class="xcue">&#9662;</span></div><div class="d">GEN 2 PRINTHEAD CUTS CUSTOM PART COUNT</div></summary><div class="dmore">The first generation needed five custom parts, including a ring heating element machined to a specific internal and external diameter, which added machining cost. The second generation modular design needs three parts and integrates stock cartridge heating elements, giving higher reliability, lower cost, and independent control of the plate temperature.</div></details>
     </div>
-    <div class="figs"><figure class="fig"><div class="imgbox"><img src="images/printhead.jpg" alt="First generation in process annealing printhead on the FFF system." loading="lazy"></div><figcaption>First generation in process annealing printhead on the FFF system.</figcaption></figure><figure class="fig"><div class="imgbox"><img src="images/printhead_gen2.jpg" alt="Second generation modular printhead, current CAD design." loading="lazy"></div><figcaption>Second generation modular printhead, current CAD design.</figcaption></figure><figure class="fig"><div class="imgbox"><img src="images/thermography.jpg" alt="In process FLIR thermography of the printhead during deposition." loading="lazy"></div><figcaption>In process FLIR thermography of the printhead during deposition.</figcaption></figure><figure class="fig"><div class="imgbox"><img src="images/microct.jpg" alt="Micro CT reconstruction showing internal porosity of a printed part." loading="lazy"></div><figcaption>Micro CT reconstruction showing internal porosity of a printed part.</figcaption></figure><figure class="fig"><div class="imgbox"><img src="images/sem_fracture.jpg" alt="SEM fracture surface, pores and ductile tearing at the bead interface." loading="lazy"></div><figcaption>SEM fracture surface, pores and ductile tearing at the bead interface.</figcaption></figure><figure class="fig"><div class="imgbox"><img src="images/test_setup.jpg" alt="Tensile and flexural testing of printed specimens." loading="lazy"></div><figcaption>Tensile and flexural testing of printed specimens.</figcaption></figure></div>
+    <div class="figs"><figure class="fig"><button type="button" class="imgbox lb" data-src="images/printhead.jpg" data-cap="In process annealing printhead printing a thin walled specimen."><img src="images/printhead.jpg" alt="In process annealing printhead printing a thin walled specimen." loading="lazy"></button><figcaption>In process annealing printhead printing a thin walled specimen.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/printhead_diagram.jpg" data-cap="Printhead assembly: heat sink, fan, duct, throat, heating block, and integrated heating plate."><img src="images/printhead_diagram.jpg" alt="Printhead assembly: heat sink, fan, duct, throat, heating block, and integrated heating plate." loading="lazy"></button><figcaption>Printhead assembly: heat sink, fan, duct, throat, heating block, and integrated heating plate.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/printhead_gen2.jpg" data-cap="Second generation modular printhead with independent plate temperature control."><img src="images/printhead_gen2.jpg" alt="Second generation modular printhead with independent plate temperature control." loading="lazy"></button><figcaption>Second generation modular printhead with independent plate temperature control.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/thermography.jpg" data-cap="In process FLIR thermography of the enhanced printhead during deposition."><img src="images/thermography.jpg" alt="In process FLIR thermography of the enhanced printhead during deposition." loading="lazy"></button><figcaption>In process FLIR thermography of the enhanced printhead during deposition.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/thermal_compare.jpg" data-cap="Thermal and mechanical setup with standard and enhanced printhead signatures."><img src="images/thermal_compare.jpg" alt="Thermal and mechanical setup with standard and enhanced printhead signatures." loading="lazy"></button><figcaption>Thermal and mechanical setup with standard and enhanced printhead signatures.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/microct.jpg" data-cap="Micro CT reconstruction of internal porosity. Click to enlarge."><img src="images/microct.jpg" alt="Micro CT reconstruction of internal porosity. Click to enlarge." loading="lazy"></button><figcaption>Micro CT reconstruction of internal porosity. Click to enlarge.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/sem_fracture.jpg" data-cap="SEM fracture surfaces: standard printhead (top), enhanced with interlayer pause (middle), enhanced continuous (bottom)."><img src="images/sem_fracture.jpg" alt="SEM fracture surfaces: standard printhead (top), enhanced with interlayer pause (middle), enhanced continuous (bottom)." loading="lazy"></button><figcaption>SEM fracture surfaces: standard printhead (top), enhanced with interlayer pause (middle), enhanced continuous (bottom).</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/bend_test.jpg" data-cap="Three point bend testing of printed specimens on the Shimadzu frame."><img src="images/bend_test.jpg" alt="Three point bend testing of printed specimens on the Shimadzu frame." loading="lazy"></button><figcaption>Three point bend testing of printed specimens on the Shimadzu frame.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/compression_test.jpg" data-cap="Compression testing of helically stiffened thin walled cylinders."><img src="images/compression_test.jpg" alt="Compression testing of helically stiffened thin walled cylinders." loading="lazy"></button><figcaption>Compression testing of helically stiffened thin walled cylinders.</figcaption></figure><figure class="fig"><button type="button" class="imgbox lb" data-src="images/cylinder_spec.jpg" data-cap="Helically stiffened cylinder with a surface modelled internal lattice."><img src="images/cylinder_spec.jpg" alt="Helically stiffened cylinder with a surface modelled internal lattice." loading="lazy"></button><figcaption>Helically stiffened cylinder with a surface modelled internal lattice.</figcaption></figure></div>
   </div>
 </div></section>
 
@@ -246,56 +285,56 @@ footer{padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1p
   <div class="subgroup">Doctoral research and modeling</div>
   <div class="proj-grid"><article class="proj ">
   <div class="art photo"><img src="images/printhead_gen2.jpg" alt="In process annealing printhead" loading="lazy"></div>
-  <div class="body"><h3>In process annealing printhead</h3><div class="proj-org">Hardware, patent filing</div><p>Custom heated plate printhead, designed and CNC machined, that anneals each layer as it prints. Programmed interlayer cooling controls thermal gradients to strengthen the weld line. Now in its second, modular generation.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">SOLIDWORKS</span><span class="tag">CNC</span><span class="tag">G code</span><span class="tag">Printhead design</span></div><a class="plink" href="https://doi.org/10.1007/s40964-026-01852-z" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div>
+  <div class="body"><h3>In process annealing printhead</h3><div class="proj-org">Hardware, patent filing</div><p>Custom heated plate printhead that anneals each layer as it prints, using programmed interlayer cooling to strengthen the weld line. The second generation adds independent control of the plate temperature, which the first generation could not do, removing the thermal slumping that limited print speed. Underlying technology in patent filing.</p>
+   <div class="cardfoot"><div class="tags"><span class="tag">SOLIDWORKS</span><span class="tag">CNC</span><span class="tag">G code</span><span class="tag">Printhead design</span></div><div class="plinks"><button type="button" class="plink storybtn" id="storyBtn">See it printing &rsaquo;</button><a class="plink" href="https://doi.org/10.1080/17452759.2022.2095288" target="_blank" rel="noopener">First generation paper &rsaquo;</a></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/thermography.jpg" alt="Machine learning toughness prediction" loading="lazy"></div>
-  <div class="body"><h3>Machine learning toughness prediction</h3><div class="proj-org">SFF 2025</div><p>Extracted 40 plus features from in process thermal signature maps and trained PCA based models (XGBoost, CatBoost, ANN) to predict part toughness, validated with nested cross validation and ANOVA.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">CatBoost</span><span class="tag">PCA</span></div><a class="plink" href="papers/Ahmed-SFF2025-ML-Toughness.pdf" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div>
+  <div class="body"><h3>Machine learning toughness prediction</h3><div class="proj-org">SFF 2025</div><p>Extracted 40 plus features from in process thermal signature maps of the enhanced printhead and trained PCA based models (XGBoost, CatBoost, ANN) to predict part toughness, validated with nested cross validation and ANOVA.</p>
+   <div class="cardfoot"><div class="tags"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">CatBoost</span><span class="tag">PCA</span></div><div class="plinks"><a class="plink" href="papers/Ahmed-SFF2025-ML-Toughness.pdf" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div></div>
 </article><article class="proj ">
-  <div class="art photo"><img src="images/temp_time.png" alt="Polymer healing and porosity models" loading="lazy"></div>
+  <div class="art photo"><img src="images/heal_plot.jpg" alt="Polymer healing and porosity models" loading="lazy"></div>
   <div class="body"><h3>Polymer healing and porosity models</h3><div class="proj-org">Physics based modeling</div><p>Coupled non isothermal reptation and porosity strength models in Python, using WLF shift factors to predict bond development directly from a part's measured thermal history.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">Reptation model</span><span class="tag">WLF</span><span class="tag">DSC / STA</span><span class="tag">Python</span></div><a class="plink" href="https://doi.org/10.1007/s40964-026-01852-z" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">Reptation model</span><span class="tag">WLF</span><span class="tag">DSC / STA</span><span class="tag">Python</span></div><div class="plinks"><a class="plink" href="https://doi.org/10.1007/s40964-026-01852-z" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/thinwall.jpg" alt="Thin walled PLA structures" loading="lazy"></div>
   <div class="body"><h3>Thin walled PLA structures</h3><div class="proj-org">IJAMT 2025</div><p>Enhanced FFF of tall thin walled PLA structures. Additional in process thermal energy more than doubles bending strength while holding geometric accuracy, for both single and multi bead walls.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">Thin wall</span><span class="tag">3 point bend</span><span class="tag">Micro CT</span></div><a class="plink" href="https://doi.org/10.1007/s00170-025-16171-w" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">Thin wall</span><span class="tag">3 point bend</span><span class="tag">Micro CT</span></div><div class="plinks"><a class="plink" href="https://doi.org/10.1007/s00170-025-16171-w" target="_blank" rel="noopener">Read paper &rsaquo;</a></div></div></div>
 </article></div>
   <div class="subgroup two">Industry and product design</div>
   <div class="proj-grid"><article class="proj span2">
   <div class="art photo"><img src="images/hfo.jpg" alt="HFO storage tank terminal" loading="lazy"></div>
   <div class="body"><h3>HFO storage tank terminal</h3><div class="proj-org">Trigger Automation and Engineering</div><p>Structural, piping, and fire protection design for a 10 tank heavy fuel oil terminal (45,300 cubic meters total) of fixed cone welded tanks in East Patenga, Chittagong. Tanks to API 650, foam suppression to NFPA 11.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">API 650</span><span class="tag">NFPA 11</span><span class="tag">Structural</span><span class="tag">Piping</span><span class="tag">Fire systems</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">API 650</span><span class="tag">NFPA 11</span><span class="tag">Structural</span><span class="tag">Piping</span><span class="tag">Fire systems</span></div><div class="plinks"></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/diesel.jpg" alt="Underground diesel storage tank" loading="lazy"></div>
   <div class="body"><h3>Underground diesel storage tank</h3><div class="proj-org">Trigger Automation and Engineering</div><p>Designed and supervised fabrication of a 40,000 L underground diesel storage tank to CAN/ULC S603 and Bangladesh Petroleum Rules 2018.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">CAN/ULC S603</span><span class="tag">Fabrication</span><span class="tag">Pressure vessel</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">CAN/ULC S603</span><span class="tag">Fabrication</span><span class="tag">Pressure vessel</span></div><div class="plinks"></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/plant.jpg" alt="Printing ink factory piping" loading="lazy"></div>
   <div class="body"><h3>Printing ink factory piping</h3><div class="proj-org">Trigger Automation and Engineering</div><p>Piping and mechanical structure design for a printing ink plant: P&amp;IDs, pipe rack and service fluid load calculations, and bill of materials.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">P&amp;ID</span><span class="tag">Pipe rack</span><span class="tag">Load calcs</span><span class="tag">BoM</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">P&amp;ID</span><span class="tag">Pipe rack</span><span class="tag">Load calcs</span><span class="tag">BoM</span></div><div class="plinks"></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/pcb.jpg" alt="PCB calibration jig" loading="lazy"></div>
   <div class="body"><h3>PCB calibration jig</h3><div class="proj-org">ME SOLshare</div><p>Spring loaded pogo pin calibration stand and connector hub for bi directional meter PCBs, printed in ABS and iterated to cut material use for mass production, reducing QA time about 40 percent per board.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">ABS</span><span class="tag">Test fixture</span><span class="tag">DfAM</span><span class="tag">SOLIDWORKS</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">ABS</span><span class="tag">Test fixture</span><span class="tag">DfAM</span><span class="tag">SOLIDWORKS</span></div><div class="plinks"></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/solbox.jpg" alt="SOLbox enclosure" loading="lazy"></div>
   <div class="body"><h3>SOLbox enclosure</h3><div class="proj-org">ME SOLshare</div><p>PLA enclosure prototypes for peer to peer solar microgrid bi directional meters, with several design iterations for robust mounting and easy field installation.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">PLA</span><span class="tag">Enclosure</span><span class="tag">Product design</span><span class="tag">Prototyping</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">PLA</span><span class="tag">Enclosure</span><span class="tag">Product design</span><span class="tag">Prototyping</span></div><div class="plinks"></div></div></div>
 </article></div>
   <div class="subgroup two">Mechanical design and CAD</div>
   <div class="proj-grid"><article class="proj ">
   <div class="art photo"><img src="images/gearbox.png" alt="Differential gearbox" loading="lazy"></div>
   <div class="body"><h3>Differential gearbox</h3><div class="proj-org">SOLIDWORKS, mechanical design</div><p>Full CAD design of an automotive differential: crown and pinion set, spider gears, housing and shafts, delivered as assembly, exploded, and dimensioned orthographic drawings to GA standard.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">SOLIDWORKS</span><span class="tag">Gear design</span><span class="tag">GA drawings</span><span class="tag">Assembly</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">SOLIDWORKS</span><span class="tag">Gear design</span><span class="tag">GA drawings</span><span class="tag">Assembly</span></div><div class="plinks"><a class="plink" href="papers/Ahmed-DifferentialGearbox-Design.pdf" target="_blank" rel="noopener">Read report &rsaquo;</a></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/screw.png" alt="Screw conveyor design (DFM and DFA)" loading="lazy"></div>
   <div class="body"><h3>Screw conveyor design (DFM and DFA)</h3><div class="proj-org">Design for Manufacturing, ME 5327</div><p>End to end design of a 150 t/hr crushed limestone screw conveyor over 30 ft: product design spec, weighted concept selection (QFD), full CAD model, and DFM and DFA with GD&amp;T tolerance stack up and per unit cost analysis.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">DFM / DFA</span><span class="tag">QFD</span><span class="tag">GD&amp;T</span><span class="tag">Cost analysis</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">DFM / DFA</span><span class="tag">QFD</span><span class="tag">GD&amp;T</span><span class="tag">Cost analysis</span></div><div class="plinks"><a class="plink" href="papers/Ahmed-ScrewConveyor-DFM-Report.pdf" target="_blank" rel="noopener">Read report &rsaquo;</a></div></div></div>
 </article><article class="proj ">
   <div class="art photo"><img src="images/fea.png" alt="Retaining ring FEA" loading="lazy"></div>
   <div class="body"><h3>Retaining ring FEA</h3><div class="proj-org">Finite Element Method, ME 5310</div><p>Finite element analysis of a snap retaining ring in Abaqus: symmetric opening displacement applied, von Mises stress evaluated against yield to select a suitable material and avoid loosening.</p>
-   <div class="cardfoot"><div class="tags"><span class="tag">Abaqus</span><span class="tag">FEA</span><span class="tag">von Mises</span><span class="tag">Material selection</span></div></div></div>
+   <div class="cardfoot"><div class="tags"><span class="tag">Abaqus</span><span class="tag">FEA</span><span class="tag">von Mises</span><span class="tag">Material selection</span></div><div class="plinks"><a class="plink" href="papers/Ahmed-RetainingRing-FEA-Report.pdf" target="_blank" rel="noopener">Read report &rsaquo;</a></div></div></div>
 </article></div>
 </section>
 
@@ -401,7 +440,25 @@ footer{padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1p
   </div>
 </div></section>
 
-<footer><div class="wrap foot-inner"><span>&copy; 2026 Rakin Ahmed &middot; Arlington, TX</span><span>Additive Manufacturing and Polymer Process R&amp;D</span></div></footer>
+<div class="story" id="story" role="dialog" aria-modal="true">
+  <button class="story-x" id="storyClose" aria-label="Close">&times;</button>
+  <div class="story-panel">
+    <h3>First generation versus second generation printhead</h3>
+    <p class="lede2">The first generation could not control the plate temperature on its own, so at higher print speed the part slumped from retained heat. The second generation adds independent plate control and prints the same tall thin wall cleanly.</p>
+    <div class="story-row">
+      <figure class="sfig"><span class="sbadge bad">First generation</span><video src="images/printhead_1stgen.mp4" poster="images/printhead_1stgen_poster.jpg" muted loop playsinline controls preload="none"></video><figcaption>Printing without independent plate control.</figcaption></figure>
+      <figure class="sfig"><span class="sbadge bad">Result</span><img src="images/slump_fail.jpg" alt="Thermal slumping failure"><figcaption>Part deformed by thermal slumping.</figcaption></figure>
+    </div>
+    <div class="story-row">
+      <figure class="sfig"><span class="sbadge good">Second generation</span><video src="images/printhead_2ndgen.mp4" poster="images/printhead_2ndgen_poster.jpg" muted loop playsinline controls preload="none"></video><figcaption>Printing with independent plate temperature control.</figcaption></figure>
+      <figure class="sfig"><span class="sbadge good">Result</span><img src="images/slump_clean.jpg" alt="Clean print"><figcaption>The same tall thin wall printed cleanly.</figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<div class="lbx" id="lbx" role="dialog" aria-modal="true"><button class="x" id="lbxClose" aria-label="Close">&times;</button><img id="lbxImg" src="" alt=""><div class="cap" id="lbxCap"></div></div>
+
+<footer><div class="wrap foot-inner"><span>&copy; 2026 Rakin Ahmed &middot; Arlington, TX</span><span><a href="https://rakinahmedbuet.github.io" style="color:inherit;text-decoration:none">rakinahmedbuet.github.io</a> &middot; Additive Manufacturing R&amp;D</span></div></footer>
 
 <script>
 (function(){var root=document.documentElement,btn=document.getElementById('themeBtn'),KEY='ra-theme';
@@ -410,6 +467,20 @@ footer{padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1p
 (function(){var t=document.querySelectorAll('.pub-tab');t.forEach(function(x){x.addEventListener('click',function(){t.forEach(function(y){y.setAttribute('aria-selected','false');});x.setAttribute('aria-selected','true');var s=x.getAttribute('data-tab');document.getElementById('journal').hidden=(s!=='journal');document.getElementById('conf').hidden=(s!=='conf');});});})();
 (function(){document.querySelectorAll('.copy-btn[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-copy'),o=b.textContent;function d(){b.textContent='Copied';setTimeout(function(){b.textContent=o;},1400);}try{navigator.clipboard.writeText(v).then(d,function(){var r=document.createRange();r.selectNodeContents(b.previousElementSibling.querySelector('.txt'));var s=getSelection();s.removeAllRanges();s.addRange(r);d();});}catch(e){d();}});});})();
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var el=document.querySelector(a.getAttribute('href'));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}});});
+(function(){var lb=document.getElementById('lbx'),im=document.getElementById('lbxImg'),cp=document.getElementById('lbxCap');
+ function open(src,cap){im.src=src;im.alt=cap||'';cp.textContent=cap||'';lb.classList.add('open');}
+ function close(){lb.classList.remove('open');im.src='';}
+ document.querySelectorAll('.lb').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-src'),b.getAttribute('data-cap'));});});
+ document.getElementById('lbxClose').addEventListener('click',close);
+ lb.addEventListener('click',function(e){if(e.target===lb)close();});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();
+(function(){var m=document.getElementById('story'),btn=document.getElementById('storyBtn');if(!btn||!m)return;var vids=m.querySelectorAll('video');
+ function open(){m.classList.add('open');vids.forEach(function(v){try{v.play();}catch(e){}});}
+ function close(){m.classList.remove('open');vids.forEach(function(v){v.pause();});}
+ btn.addEventListener('click',open);
+ document.getElementById('storyClose').addEventListener('click',close);
+ m.addEventListener('click',function(e){if(e.target===m)close();});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});})();
 </script>
 </body>
 </html>
